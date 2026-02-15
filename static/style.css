@@ -6,7 +6,6 @@
   --glass-bg: rgba(255, 255, 255, 0.03);
   --text-main: #e0e6ed;
 }
-
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -152,3 +151,4 @@ header {
   text-shadow: 0 0 10px var(--accent-glow);
 
 }
+
