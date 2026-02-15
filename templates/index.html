@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Check</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="background-overlay"></div>
+
+  <div class="main-container">
+    <header>
+      <h1 class="logo">VIBE<span>CHECK</span></h1>
+      <p class="tagline">Your next favorite movie is just an algorithm away</p>
+    </header>
+
+    <section class="search-section">
+      <form method="POST" class="search-box">
+        <input list="movies" name="movie_name" placeholder="Which movie are we matching today?" required
+          autocomplete="off">
+        <datalist id="movies">
+          {% for title in movie_names %}
+          <option value="{{ title }}">
+            {% endfor %}
+        </datalist>
+        <button type="submit">Match Now</button>
+      </form>
+    </section>
+
+    {% if selected_movie %}
+    <div class="results-header" style="text-align: center; margin-bottom: 40px;">
+      <h2>Matches for <span class="highlight">{{ selected_movie }}</span></h2>
+    </div>
+    {% endif %}
+
+    <main class="movie-grid">
+      {% for movie in recommendations %}
+      <div class="movie-card">
+        <div class="poster-wrapper">
+          <img src="{{ movie.poster }}" alt="{{ movie.title }}" loading="lazy">
+        </div>
+        <div class="movie-info">
+          <h3>{{ movie.title }}</h3>
+        </div>
+      </div>
+      {% endfor %}
+    </main>
+  </div>
+</body>
+
+</html>
